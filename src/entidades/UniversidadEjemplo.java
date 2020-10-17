@@ -13,9 +13,7 @@ import modelo.MateriaData;
 
 public class UniversidadEjemplo {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
         // TODO code application logic here
         Conexion c=new Conexion();
@@ -24,7 +22,7 @@ public class UniversidadEjemplo {
         AlumnoData ad=new AlumnoData(c);
         ad.guardarAlumno(juan);*/
         
-        Materia lab = new Materia("Laboratorio de programacion");
+        Materia lab = new Materia("Inglés");
         MateriaData addMateria = new MateriaData(c);
         addMateria.agregarMateria(lab);
     }
