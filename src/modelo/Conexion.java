@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 
 
 public class Conexion {
-    private final String base = "SmNTbTZ6Iq";
-    private final String url="jdbc:mysql://remotemysql.com:3306/"+base;
-    private final String user="SmNTbTZ6Iq";
-    private final String pass="Qcx7ktWQXZ";
+    private final String base = "universidad";
+    private final String url="jdbc:mysql://localhost:3306/"+base;
+    private final String user="root";
+    private final String pass="";
     private Connection con;
     
     public Connection getConnection()
@@ -26,7 +26,7 @@ public class Conexion {
             }
             catch (SQLException |ClassNotFoundException e)
             {
-                JOptionPane.showMessageDialog(null, "Error al conectarse");
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
                 return con;

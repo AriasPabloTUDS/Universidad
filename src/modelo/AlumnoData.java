@@ -31,7 +31,7 @@ public class AlumnoData {
         ps.setDate(2, Date.valueOf(alumno.getFn_alumno()));
         ps.setBoolean(3, alumno.isActivo());
         
-        ps.executeUpdate();
+        ps.executeQuery();
         
         ResultSet rs = ps.getGeneratedKeys();
 
@@ -40,11 +40,11 @@ public class AlumnoData {
             } else {
                 JOptionPane.showMessageDialog(null,"No puedo obtener id");
             }
-       
-        con.close();
+       con.close();
+        
         }catch(SQLException e){
         
-            JOptionPane.showMessageDialog(null,"Error al guardar Alumno");
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
        
     }

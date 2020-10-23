@@ -29,7 +29,7 @@ public class MateriaData {
         ps.setString(1,materia.getNombreMateria());
         
                
-        ps.executeUpdate();
+        ps.executeQuery();
         
         ResultSet rs = ps.getGeneratedKeys();
 
@@ -42,7 +42,7 @@ public class MateriaData {
         con.close();
         }catch(SQLException e){
         
-            JOptionPane.showMessageDialog(null,"Error al crear la materia");
+            JOptionPane.showMessageDialog(null,e.getMessage());
         }
        
     }
