@@ -37,10 +37,18 @@ public class Universidad {
         Inscripcion inscripcion = new Inscripcion(sergio,tecnologia);
         InscripcionData id = new InscripcionData(c);
         id.altaInscripcion(inscripcion);
-*/
+
         Calificacion calificacion = new Calificacion(new Alumno(1,"Damian Gonzalez",LocalDate.of(1990, Month.MARCH, 1),true),new Materia(6,"Informatica"),8);
         CalificacionData cd = new CalificacionData(c);
         cd.calificar(calificacion);
+        */
+        
+       InscripcionData id = new InscripcionData(c);
+       //id.ListarPorMateria(2);
+       id.ListarAlumnosPorMateria(1);
+      
+       
+       
     }
     
 }

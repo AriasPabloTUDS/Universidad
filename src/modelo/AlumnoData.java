@@ -1,6 +1,5 @@
 
 package modelo;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -77,8 +76,8 @@ public class AlumnoData {
         return alumno;
     }
      }
-
-     /*
+/*
+     
 package modelo;
 
 import java.sql.*;
@@ -223,4 +222,5 @@ public class AlumnoData {
         }
         
     }
+
 */

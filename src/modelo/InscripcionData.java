@@ -15,6 +15,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -81,5 +85,66 @@ public class InscripcionData {
         }
        
     }
+    public List<Alumno> ListarPorMateria(int id) {
+
+        Alumno alumno;
+        List<Alumno> alumnos = new ArrayList<>();
+        String sql = "SELECT * FROM inscripcion i, alumno u WHERE id_materia = ? and i.id_alumno = u.id_alumno";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                alumno = new Alumno();
+                alumno.setId_alumno(rs.getInt("id_alumno"));
+                alumno.setNombre_alumno(rs.getString("nombre_alumno"));
+                alumno.setFn_alumno(rs.getDate("fn_alumno").toLocalDate());
+                alumno.setActivo(rs.getBoolean("activo"));
+                System.out.println(alumno.getNombre_alumno());
+                alumnos.add(alumno);
+        
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+        return alumnos;
+    }
     
+    
+    public List<Materia> ListarAlumnosPorMateria(int id) {
+
+        Materia materia;
+        List<Materia> materias = new ArrayList<>();
+        String sql = "SELECT * FROM inscripcion i, materia u WHERE id_alumno = ? and i.id_materia = u.id_materia";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(rs.getInt("id_materia"));
+                materia.setNombreMateria(rs.getString("nombre_materia"));
+                System.out.println(materia.getNombreMateria());
+                materias.add(materia);
+        
+            }
+            rs.close();
+            ps.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+        return materias;
+    }
 }
