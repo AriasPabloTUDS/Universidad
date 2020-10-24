@@ -1,6 +1,7 @@
 
-package entidades;
+package main;
 
+import entidades.*;
 import entidades.Materia;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -19,6 +20,21 @@ public class Universidad {
     public static void main(String[] args) {
         
         Conexion c=new Conexion();
+        
+        
+      MateriaData md=new MateriaData(c);
+         Materia eda = new Materia("Estructura de datos");
+         md.agregarMateria(eda);
+         eda.setNombreMateria("matematica");
+         md.modificarMateria(eda);
+      //md.agregarMateria(eda);
+       //  md.quitarMateria(1);
+    //  AlumnoData ad= new AlumnoData(c);
+   //   ad.borrarAlumno(5);
+//       ad.borrarAlumno(5);
+    //   MateriaData md= new MateriaData(c);
+   //    md.quitarMateria(1);
+      // Materia mat=new Materia("nombreMateria");
       /*
         Materia tecnologia = new Materia("Tecnologia");
         Materia eda = new Materia("Estructura de datos");
@@ -40,15 +56,7 @@ public class Universidad {
 
         Calificacion calificacion = new Calificacion(new Alumno(1,"Damian Gonzalez",LocalDate.of(1990, Month.MARCH, 1),true),new Materia(6,"Informatica"),8);
         CalificacionData cd = new CalificacionData(c);
-        cd.calificar(calificacion);
-        */
-        
-       InscripcionData id = new InscripcionData(c);
-       //id.ListarPorMateria(2);
-       id.ListarAlumnosPorMateria(1);
-      
-       
-       
+        cd.calificar(calificacion);*/
     }
     
 }
