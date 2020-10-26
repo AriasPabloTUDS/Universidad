@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import entidades.Alumno;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 
@@ -78,24 +79,27 @@ public class AlumnoData {
         }
         return alumno;
     }
-     public void actualizarAlumno(Alumno alumno) {
+     public void modificarAlumno(Alumno alumno, int id_alumno, String nombre_alumno, LocalDate fn_alumno, boolean activo) {
 
+             
+             
         try {
-            String sql = "UPDATE alumno SET nombre_alumno=?, fn_alumno=?, activo=? WHERE id_alumno=?";
+            String sql = "UPDATE alumno SET id_alumno = ?, nombre_alumno = ?, fn_alumno = ?,  activo = ? WHERE id_alumno = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
-
-            ps.setString(1, alumno.getNombre_alumno());
-            ps.setDate(2, Date.valueOf(alumno.getFn_alumno()));
-            ps.setBoolean(3, alumno.isActivo());
-            ps.setInt(4, alumno.getId_alumno());
-
+            
+            ps.setInt(1, id_alumno);
+            ps.setString(2, nombre_alumno);
+            ps.setDate(3, Date.valueOf(fn_alumno));
+            ps.setBoolean(4, activo);
+            ps.setInt(5, alumno.getId_alumno());
+            
             ps.executeUpdate();
             ps.close();
            
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null, "Error al actualizar Alumno");
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
