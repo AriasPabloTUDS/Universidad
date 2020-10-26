@@ -19,11 +19,15 @@ public class Universidad {
    
     public static void main(String[] args) {
         
-        Conexion c=new Conexion();
-       /* 
-         Materia quimica = new Materia(27,"Quimica");
+         Conexion c=new Conexion();
+        
+         Materia quimica = new Materia("Quimica");
+         Materia lab4 = new Materia("Laboratorio 4");
          MateriaData md=new MateriaData(c);
          md.agregarMateria(quimica);
+         md.agregarMateria(lab4);
+         
+         md.agregarMateria(lab4);
          md.modificarMateria(quimica,7804, "Modificado", true);
          
          
@@ -59,7 +63,7 @@ public class Universidad {
         CalificacionData cd = new CalificacionData(c);
         cd.calificar(calificacion);
         
-        */
+        
     }
     
 }

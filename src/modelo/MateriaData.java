@@ -13,10 +13,10 @@ import java.util.logging.Logger;
 public class MateriaData {
 
     private Connection con;
-    private Conexion conexion = new Conexion();
+  
     
     public MateriaData(Conexion conexion) {
-        this.conexion = conexion;
+        
         con = conexion.getConnection();
     }
 
@@ -24,10 +24,11 @@ public class MateriaData {
 
         try {
             if (con.isClosed()){
-                conexion.getConnection();
+                
+                con = new Conexion().getConnection();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
@@ -61,16 +62,16 @@ public class MateriaData {
 
   
     public void quitarMateria(int id){
-        
         try {
-            if (!con.isClosed()){
-                conexion.getConnection();
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MateriaData.class.getName()).log(Level.SEVERE, null, ex);
+            
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
+             
         
         
         String sql = "DELETE FROM materia WHERE id_materia=?";
@@ -89,7 +90,15 @@ public class MateriaData {
     }
          public void modificarMateria(Materia materia, int id, String nombre, boolean activo) {
 
-             
+             try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
              
         try {
             String sql = "UPDATE materia SET id_materia = ?, nombre_materia = ?, activo = ? WHERE id_materia = ?";
@@ -103,7 +112,7 @@ public class MateriaData {
             
             ps.executeUpdate();
             ps.close();
-           
+            con.close();
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());

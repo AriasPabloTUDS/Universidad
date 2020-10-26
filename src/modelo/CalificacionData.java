@@ -28,7 +28,16 @@ public class CalificacionData {
     }
     
     public void calificar(Calificacion calificacion){
-    
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         String sql="INSERT INTO `calificacion` (`id_alumno`, `id_materia`, `nota`, `fecha`)"
                 + "VALUES (?,?,?,?);";
         

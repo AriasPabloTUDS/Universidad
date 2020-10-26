@@ -9,6 +9,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import entidades.Alumno;
 import java.time.LocalDate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -24,6 +25,16 @@ public class AlumnoData {
     
     public void guardarAlumno(Alumno alumno){
     
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         String sql="INSERT into alumno (nombre_alumno, fn_alumno,activo) "
                 + "VALUES(?, ?, ?);";
         
@@ -53,7 +64,16 @@ public class AlumnoData {
     }
     
      public Alumno buscarAlumno(int id) {
-        //Alumno alumno = null;
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         Alumno alumno= new Alumno();
         String sql = "SELECT * FROM alumno WHERE id_alumno=?";
         
@@ -72,7 +92,7 @@ public class AlumnoData {
             }
             rs.close();
             ps.close();
-
+            con.close();
         } catch (SQLException ex) {
             //Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             //JOptionPane.showMessageDialog(null, "Alumno no encontrado ", "Error!", JOptionPane.WARNING_MESSAGE);
@@ -81,7 +101,16 @@ public class AlumnoData {
     }
      public void modificarAlumno(Alumno alumno, int id_alumno, String nombre_alumno, LocalDate fn_alumno, boolean activo) {
 
-             
+          try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+           
              
         try {
             String sql = "UPDATE alumno SET id_alumno = ?, nombre_alumno = ?, fn_alumno = ?,  activo = ? WHERE id_alumno = ?";
@@ -96,7 +125,7 @@ public class AlumnoData {
             
             ps.executeUpdate();
             ps.close();
-           
+            con.close();
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -105,6 +134,18 @@ public class AlumnoData {
     
     public void borrarAlumno(int id){
     
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+           
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        
+        
         String sql="DELETE FROM alumno WHERE id_alumno=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -113,7 +154,7 @@ public class AlumnoData {
             ps.executeUpdate();
             
             ps.close();
-         
+            con.close();
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, "Error al borrar Alumno");

@@ -34,7 +34,16 @@ public class InscripcionData {
     
   
     public void altaInscripcion(Inscripcion inscripcion){
-    
+    try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+           
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         String sql="INSERT into inscripcion (id_alumno, id_materia, fecha) "
                 + "VALUES(?, ?, ?);";
         
@@ -61,7 +70,16 @@ public class InscripcionData {
     }
     
      public void bajaInscripcion(int idInscripcion){
-    
+         try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+         
         String sql="DELETE from inscripcion WHERE id_inscripcion = ?";
         
         
@@ -86,7 +104,16 @@ public class InscripcionData {
        
     }
     public List<Alumno> ListarPorMateria(int id) {
-
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         Alumno alumno;
         List<Alumno> alumnos = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion i, alumno u WHERE id_materia = ? and i.id_alumno = u.id_alumno";
@@ -109,7 +136,7 @@ public class InscripcionData {
             }
             rs.close();
             ps.close();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -119,7 +146,16 @@ public class InscripcionData {
     
     
     public List<Materia> ListarAlumnosPorMateria(int id) {
-
+        try {
+            if (con.isClosed()){
+                
+                con = new Conexion().getConnection();
+            }
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         Materia materia;
         List<Materia> materias = new ArrayList<>();
         String sql = "SELECT * FROM inscripcion i, materia u WHERE id_alumno = ? and i.id_materia = u.id_materia";
@@ -140,7 +176,7 @@ public class InscripcionData {
             }
             rs.close();
             ps.close();
-
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null,ex.getMessage());
