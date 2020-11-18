@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.Month;
 import modelo.AlumnoData;
-import modelo.CalificacionData;
 import modelo.Conexion;
 import modelo.InscripcionData;
 import modelo.MateriaData;
@@ -21,7 +20,7 @@ public class Universidad {
         
          Conexion c=new Conexion();
         
-         Materia quimica = new Materia("Quimica");
+       /*  Materia quimica = new Materia("Quimica");
          Materia lab4 = new Materia("Laboratorio 4");
          MateriaData md=new MateriaData(c);
          md.agregarMateria(quimica);
@@ -55,13 +54,10 @@ public class Universidad {
         
         
         
-        Inscripcion inscripcion = new Inscripcion(sergio,tecnologia);
-        InscripcionData id = new InscripcionData(c);
-        id.altaInscripcion(inscripcion);
-
-        Calificacion calificacion = new Calificacion(new Alumno(1,"Damian Gonzalez",LocalDate.of(1990, Month.MARCH, 1),true),new Materia(6,"Informatica"),8);
-        CalificacionData cd = new CalificacionData(c);
-        cd.calificar(calificacion);
+        Inscripcion inscripcion = new Inscripcion(sergio,tecnologia);*/
+        InscripcionData id = new InscripcionData(c); 
+        id.calificar(1, 6.97);
+        
         
         
     }
