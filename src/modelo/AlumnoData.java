@@ -60,7 +60,7 @@ public class AlumnoData {
         
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
-       
+            JOptionPane.showMessageDialog(null, "Alumno guardado correctamente con el id "+alumno.getId_alumno());
     }
     
      public Alumno buscarAlumno(int id) {
