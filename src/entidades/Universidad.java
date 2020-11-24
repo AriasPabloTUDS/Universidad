@@ -55,10 +55,11 @@ public class Universidad {
         
         
         Inscripcion inscripcion = new Inscripcion(sergio,tecnologia);*/
-        InscripcionData id = new InscripcionData(c); 
-        id.calificar(1, 6.97);
+       // InscripcionData id = new InscripcionData(c); 
+        //id.calificar(1, 6.97);
         
-        
+        AlumnoData alumnoData = new AlumnoData(c);
+        alumnoData.buscarAlumnos();
         
     }
     
